@@ -27,7 +27,7 @@ public class BuildSA {
 
     public static void printSuffixArray(int[] suffixArray, String reference) {
         for (int j : suffixArray) {
-            System.out.println(reference.substring(j));
+            System.out.println(j + " " + reference.substring(j));
         }
     }
     public int[] referenceToInts(String reference) {
