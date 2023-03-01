@@ -3,7 +3,6 @@ import java.util.Map;
 
 public class QuerySA {
     public static void main(String[] args) {
-        // "abracadabradad$";
 
         BuildSA sa = new BuildSA();
         QuerySA qs = new QuerySA();
@@ -11,25 +10,22 @@ public class QuerySA {
         String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa", true)[0];
         String[] queries = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli_queries_strong.fa", false);
 
-//        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/sample_genome.fa")[0];
-//        String[] queries = new String[]{"AGCTA"};
-
         int[] suffixArray = sa.buildSuffixArray(reference);
-        int k = 20;
+        int k = 15;
         System.out.println("Built suffix array.");
         Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, k);
         System.out.println("Built prefix table of k=" + k + ".");
 
         var tick = System.currentTimeMillis();
-        for (int i = 0; i < 11; i++) {
-            System.out.println(Arrays.toString(qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable)));
+        for (int i = 0; i < queries.length; i++) {
+            qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
         }
         var tock = System.currentTimeMillis();
         System.out.println("Naive Query took " + (tock - tick) + " ms.");
 
         tick = System.currentTimeMillis();
-        for (int i = 0; i < 11; i++) {
-            System.out.println(Arrays.toString(qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable)));
+        for (int i = 0; i < queries.length; i++) {
+            qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
         }
         tock = System.currentTimeMillis();
         System.out.println("Simple Query took " + (tock - tick) + " ms.");
