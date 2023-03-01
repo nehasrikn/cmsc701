@@ -15,7 +15,7 @@ public class QuerySA {
         System.out.println("Done building prefix table.");
         // BuildSA.printSuffixArray(suffixArray, reference);
 
-        System.out.println(Arrays.toString(qs.naiveQuery("GCCAGCAATACCGGAGAACGTTCTGAACCGCGTCCGACTGTGTGCAGCCCCATATAACCTTGCTCACGCAGATCTTCGCCTTTGGTGATCCGATAAGTCACACGATCGCCCGCGACGTTGCTGATCAGATCAACAGCACGCTGTGCCAGTTGCGATGGTCCCAATTCTTCTGCCGGTGCGTTGATGGTGTCACGCACCCA", suffixArray, reference, true, prefixTable)));
+        System.out.println(Arrays.toString(qs.simpleAccelQuery("GCCAGCAATACCGGAGAACGTTCTGAACCGCGTCCGACTGTGTGCAGCCCCATATAACCTTGCTCACGCAGATCTTCGCCTTTGGTGATCCGATAAGTCACACGATCGCCCGCGACGTTGCTGATCAGATCAACAGCACGCTGTGCCAGTTGCGATGGTCCCAATTCTTCTGCCGGTGCGTTGATGGTGTCACGCACCCA", suffixArray, reference, 2, prefixTable)));
 
 //        var tick = System.currentTimeMillis();
 //        for (int i = 0; i < 10000; i++) {
@@ -81,12 +81,13 @@ public class QuerySA {
     }
 
 
-    public int[] naiveQuery(String query, int[] suffixArray, String reference, boolean usePrefTab, Map<String, int[]> prefixTable) {
+    public int[] naiveQuery(String query, int[] suffixArray, String reference, int k, Map<String, int[]> prefixTable) {
         int leftSeed = 0;
         int rightSeed = suffixArray.length - 1;
 
-        if (usePrefTab) {
-            int[] bounds = prefixTable.get(query.substring(0, 2));
+        if (k > 0) {
+            /* Use prefix table to narrow search space. */
+            int[] bounds = prefixTable.get(query.substring(0, k));
             if (bounds == null) {
                 return new int[0];
             }
@@ -104,9 +105,19 @@ public class QuerySA {
         return results;
     }
 
-    public int[] simpleAccelQuery(String query, int[] suffixArray, String reference) {
+    public int[] simpleAccelQuery(String query, int[] suffixArray, String reference, int k, Map<String, int[]> prefixTable) {
         int left = 0;
         int right = suffixArray.length - 1;
+
+        if (k > 0) {
+            int[] bounds = prefixTable.get(query.substring(0, k));
+            if (bounds == null) {
+                return new int[0];
+            }
+            left = bounds[0];
+            right = bounds[1];
+        }
+
         int pivot;
         int comp;
         int minLCPSkip;
@@ -132,6 +143,15 @@ public class QuerySA {
         int lower_bound = left; // now this stores what i want
         
         right = suffixArray.length - 1;
+
+        if (k > 0) {
+            int[] bounds = prefixTable.get(query.substring(0, k));
+            if (bounds == null) {
+                return new int[0];
+            }
+            right = bounds[1];
+        }
+
         pivot = -1;
         lcpRightQuery = getMismatchIndex(reference, suffixArray[right], query, 0);
 
