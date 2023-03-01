@@ -14,10 +14,10 @@ public class BuildSA {
     public static void main(String[] args) {
         // Create a new instance of the SA class
         BuildSA sa = new BuildSA();
-        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa");
-        int[] suffixArray = sa.buildSuffixArray(reference);
+        String[] reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa", false);
+        int[] suffixArray = sa.buildSuffixArray(reference[0]);
         //BuildSA.printSuffixArray(suffixArray, reference);
-        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, 2);
+        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference[0], suffixArray, 2);
         System.out.println("Done.");
         for (String key : prefixTable.keySet()) {
             System.out.println(key + " " + Arrays.toString(prefixTable.get(key)));
@@ -47,7 +47,7 @@ public class BuildSA {
         return uniqueBases;
     }
 
-    public String readFastaFile(String filename) {
+    public String[] readFastaFile(String filename, boolean appendSentinel) {
         // There could be multiple sequences in the file (header + sequence)
         String[] genomeSequences = null; 
         BufferedReader fileReader = null;
@@ -75,6 +75,9 @@ public class BuildSA {
             line = fileReader.readLine(); // header
             while (line != null) {
                 if (line.charAt(0) == '>' && !genomeHeader) {
+                    if (appendSentinel) {
+                        sb.append('$');
+                    }
                     genomeSequences[seqNumber] = sb.toString();
                     seqNumber++;
                     sb = new StringBuilder();
@@ -96,8 +99,11 @@ public class BuildSA {
                 System.out.println("Error closing file: " + filename);
             }
         }
+        if (appendSentinel) {
+            sb.append('$');
+        }
         genomeSequences[seqNumber] = sb.toString();
-        return genomeSequences[0] + '$';
+        return genomeSequences;
     }
     
     public int[] buildSuffixArray(String reference) {
@@ -114,7 +120,7 @@ public class BuildSA {
         Build the prefix table atop the suffix array that jumps to the suffix array interval
         corresponding to any prefix of length k.
          */
-        Map<String, int[]> prefixTable = new TreeMap<String, int[]>();
+        Map<String, int[]> prefixTable = new HashMap<String, int[]>();
         for (int i = 0; i < suffixArray.length; i++) {
             String suffix = reference.substring(suffixArray[i]);
             if (suffix.length() < k || (suffix.length() == k && suffix.charAt(suffix.length() - 1) == '$')) {
@@ -137,7 +143,7 @@ public class BuildSA {
         Build the prefix table atop the suffix array that jumps to the suffix array interval
         corresponding to any prefix of length k.
          */
-        Map<String, int[]> prefixTable = new TreeMap<String, int[]>();
+        Map<String, int[]> prefixTable = new HashMap<String, int[]>();
         int i = 0;
         while (i < suffixArray.length) {
             String suffix = reference.substring(suffixArray[i]);
@@ -172,10 +178,10 @@ public class BuildSA {
             mid = low + (high - low) / 2;
 
             int midSuffixIndex = suffixArray[mid];
-            String midString = reference.substring(midSuffixIndex, midSuffixIndex + prefix.length());
+            String midString = reference.substring(midSuffixIndex, Math.min(reference.length(), midSuffixIndex + prefix.length()));
 
             int prevSuffixIndex = suffixArray[mid - 1];
-            String prevString = reference.substring(prevSuffixIndex, prevSuffixIndex + prefix.length());
+            String prevString = reference.substring(prevSuffixIndex, Math.min(reference.length(), prevSuffixIndex + prefix.length()));
 
             if (!midString.equals(prefix) && (mid == 0 || prevString.equals(prefix))) {
                 return mid;
@@ -185,7 +191,6 @@ public class BuildSA {
                 high = mid - 1;
             }
         }
-
         return -1; // no 1s found
     }
 

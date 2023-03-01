@@ -8,21 +8,31 @@ public class QuerySA {
         BuildSA sa = new BuildSA();
         QuerySA qs = new QuerySA();
 
-        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa");
+        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa", true)[0];
+        String[] queries = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli_queries_strong.fa", false);
+
+//        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/sample_genome.fa")[0];
+//        String[] queries = new String[]{"AGCTA"};
+
         int[] suffixArray = sa.buildSuffixArray(reference);
-        System.out.println("Done reading in.");
-        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, 2);
-        System.out.println("Done building prefix table.");
-        // BuildSA.printSuffixArray(suffixArray, reference);
+        int k = 20;
+        System.out.println("Built suffix array.");
+        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, k);
+        System.out.println("Built prefix table of k=" + k + ".");
 
-        System.out.println(Arrays.toString(qs.simpleAccelQuery("GCCAGCAATACCGGAGAACGTTCTGAACCGCGTCCGACTGTGTGCAGCCCCATATAACCTTGCTCACGCAGATCTTCGCCTTTGGTGATCCGATAAGTCACACGATCGCCCGCGACGTTGCTGATCAGATCAACAGCACGCTGTGCCAGTTGCGATGGTCCCAATTCTTCTGCCGGTGCGTTGATGGTGTCACGCACCCA", suffixArray, reference, 2, prefixTable)));
+        var tick = System.currentTimeMillis();
+        for (String s : queries) {
+            qs.naiveQuery(s, suffixArray, reference, k, prefixTable);
+        }
+        var tock = System.currentTimeMillis();
+        System.out.println("Naive Query took " + (tock - tick) + " ms.");
 
-//        var tick = System.currentTimeMillis();
-//        for (int i = 0; i < 10000; i++) {
-//            qs.naiveQuery("CGCTTTCTCGGCAACAGTTTTACCATATTATCTCGACTTCCGGTGGTAATGCCGGGTTGTCACTGGAGATTCATCCGCACATGTTACGCCATTCGTGTGG", suffixArray, reference);
-//        }
-//        var tock = System.currentTimeMillis();
-//        System.out.println("Naive query took " + (tock - tick) + " ms.");
+        tick = System.currentTimeMillis();
+        for (String query : queries) {
+            qs.simpleAccelQuery(query, suffixArray, reference, k, prefixTable);
+        }
+        tock = System.currentTimeMillis();
+        System.out.println("Simple Query took " + (tock - tick) + " ms.");
     }
     public int getMismatchIndex(String reference, int index, String query, int offset) {
         /* Find the index of the first mismatch between query and reference, starting at index in reference. */
@@ -92,7 +102,7 @@ public class QuerySA {
                 return new int[0];
             }
             leftSeed = bounds[0];
-            rightSeed = bounds[1];
+            rightSeed = bounds[1] - 1;
         }
 
         var lower = binarySearchLB(query, suffixArray, reference, leftSeed, rightSeed);
@@ -115,7 +125,7 @@ public class QuerySA {
                 return new int[0];
             }
             left = bounds[0];
-            right = bounds[1];
+            right = bounds[1] - 1;
         }
 
         int pivot;
@@ -141,7 +151,6 @@ public class QuerySA {
             }
         }
         int lower_bound = left; // now this stores what i want
-        
         right = suffixArray.length - 1;
 
         if (k > 0) {
@@ -149,7 +158,7 @@ public class QuerySA {
             if (bounds == null) {
                 return new int[0];
             }
-            right = bounds[1];
+            right = bounds[1] - 1;
         }
 
         pivot = -1;
@@ -175,9 +184,5 @@ public class QuerySA {
         }
         Arrays.sort(results);
         return results;
-
     }
-
-
-    
 }
