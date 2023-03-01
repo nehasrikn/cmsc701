@@ -146,12 +146,14 @@ public class BuildSA {
         Map<String, int[]> prefixTable = new HashMap<String, int[]>();
         int i = 0;
         while (i < suffixArray.length) {
-            String suffix = reference.substring(suffixArray[i]);
-            if (suffix.length() < k || (suffix.length() == k && suffix.charAt(suffix.length() - 1) == '$')) {
+            // String suffix = reference.substring(suffixArray[i]);
+            if (suffixArray[i] + k > reference.length() || reference.charAt(suffixArray[i] + k - 1) == '$') {
+                // suffix.length() < k || (suffix.length() == k && suffix.charAt(suffix.length() - 1) == '$')
                 i++;
                 continue;
             }
-            String prefix = suffix.substring(0, k);
+            // String prefix = suffix.substring(0, k);
+            String prefix = reference.substring(suffixArray[i], suffixArray[i] + k);
             int j = i + 1;
             int firstNonPrefix = findIdenticalPrefixChunk(reference, suffixArray, prefix, j);
             if (firstNonPrefix == -1) {

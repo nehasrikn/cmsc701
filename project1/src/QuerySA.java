@@ -21,15 +21,15 @@ public class QuerySA {
         System.out.println("Built prefix table of k=" + k + ".");
 
         var tick = System.currentTimeMillis();
-        for (String s : queries) {
-            qs.naiveQuery(s, suffixArray, reference, k, prefixTable);
+        for (int i = 0; i < 11; i++) {
+            System.out.println(Arrays.toString(qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable)));
         }
         var tock = System.currentTimeMillis();
         System.out.println("Naive Query took " + (tock - tick) + " ms.");
 
         tick = System.currentTimeMillis();
-        for (String query : queries) {
-            qs.simpleAccelQuery(query, suffixArray, reference, k, prefixTable);
+        for (int i = 0; i < 11; i++) {
+            System.out.println(Arrays.toString(qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable)));
         }
         tock = System.currentTimeMillis();
         System.out.println("Simple Query took " + (tock - tick) + " ms.");
@@ -125,7 +125,7 @@ public class QuerySA {
                 return new int[0];
             }
             left = bounds[0];
-            right = bounds[1] - 1;
+            right = bounds[1];
         }
 
         int pivot;
@@ -158,7 +158,7 @@ public class QuerySA {
             if (bounds == null) {
                 return new int[0];
             }
-            right = bounds[1] - 1;
+            right = bounds[1];
         }
 
         pivot = -1;
