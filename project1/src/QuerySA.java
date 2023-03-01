@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Map;
+
 public class QuerySA {
     public static void main(String[] args) {
         // "abracadabradad$";
@@ -9,9 +11,11 @@ public class QuerySA {
         String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa");
         int[] suffixArray = sa.buildSuffixArray(reference);
         System.out.println("Done reading in.");
+        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, 2);
+        System.out.println("Done building prefix table.");
         // BuildSA.printSuffixArray(suffixArray, reference);
 
-        System.out.println(Arrays.toString(qs.simpleAccelQuery("AAGTATTGGC", suffixArray, reference)));
+        System.out.println(Arrays.toString(qs.naiveQuery("GCCAGCAATACCGGAGAACGTTCTGAACCGCGTCCGACTGTGTGCAGCCCCATATAACCTTGCTCACGCAGATCTTCGCCTTTGGTGATCCGATAAGTCACACGATCGCCCGCGACGTTGCTGATCAGATCAACAGCACGCTGTGCCAGTTGCGATGGTCCCAATTCTTCTGCCGGTGCGTTGATGGTGTCACGCACCCA", suffixArray, reference, true, prefixTable)));
 
 //        var tick = System.currentTimeMillis();
 //        for (int i = 0; i < 10000; i++) {
@@ -30,6 +34,7 @@ public class QuerySA {
         }
         return i;
     }
+
     public int strComp(String reference, int index, String query, int offset) {
         /* Compare query to reference, starting at index in reference.
         Returns 0 if equal, -1 if query is less than reference, 1 if query is greater than reference. */
@@ -43,9 +48,9 @@ public class QuerySA {
         return Character.compare(reference.charAt(index + mismatchIndex), query.charAt(mismatchIndex));
     }
 
-    public int binarySearchLB(String query, int[] suffixArray, String reference) {
-        int left = 0;
-        int right = suffixArray.length - 1;
+    public int binarySearchLB(String query, int[] suffixArray, String reference, int leftSeed, int rightSeed) {
+        int left = leftSeed;
+        int right = rightSeed;
         int pivot = -1;
         while (left < right) {
             pivot = left + (right - left) / 2;
@@ -59,7 +64,7 @@ public class QuerySA {
         return left;
     }
 
-    public int binarySearchUB(String query, int[] suffixArray, String reference) {
+    public int binarySearchUB(String query, int[] suffixArray, String reference, int leftSeed, int rightSeed) {
         int left = 0;
         int right = suffixArray.length - 1;
         int pivot = -1;
@@ -76,9 +81,21 @@ public class QuerySA {
     }
 
 
-    public int[] naiveQuery(String query, int[] suffixArray, String reference) {
-        var lower = binarySearchLB(query, suffixArray, reference);
-        var upper = binarySearchUB(query, suffixArray, reference);
+    public int[] naiveQuery(String query, int[] suffixArray, String reference, boolean usePrefTab, Map<String, int[]> prefixTable) {
+        int leftSeed = 0;
+        int rightSeed = suffixArray.length - 1;
+
+        if (usePrefTab) {
+            int[] bounds = prefixTable.get(query.substring(0, 2));
+            if (bounds == null) {
+                return new int[0];
+            }
+            leftSeed = bounds[0];
+            rightSeed = bounds[1];
+        }
+
+        var lower = binarySearchLB(query, suffixArray, reference, leftSeed, rightSeed);
+        var upper = binarySearchUB(query, suffixArray, reference, leftSeed, rightSeed);
         int[] results = new int[upper - lower];
         for (int i = lower; i < upper; i++) {
             results[i - lower] = suffixArray[i];

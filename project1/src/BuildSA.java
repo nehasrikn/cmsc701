@@ -97,9 +97,6 @@ public class BuildSA {
             }
         }
         genomeSequences[seqNumber] = sb.toString();
-        System.out.println(genomeSequences[0].charAt(10));
-        System.out.println(genomeSequences[0].length());
-
         return genomeSequences[0] + '$';
     }
     
