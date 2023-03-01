@@ -4,25 +4,89 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.*;
 import java.util.*;
+import java.util.ArrayList;
 
 import java.util.HashMap;
+import java.io.Serializable;
+
 import java.util.function.Function;
+
+class SuffixArrayData implements Serializable {
+    public int[] suffixArray;
+    public Map<String, int[]> prefixTable;
+    public int k;
+    public String reference;
+    SuffixArrayData(int[] sa, Map<String, int[]> pt, int k, String ref) {
+        suffixArray = sa;
+        prefixTable = pt;
+        k = k;
+        reference = ref;
+    }
+    public void serializeAndWriteToBinFile(String filename) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream byteObjOut = new ObjectOutputStream(fileOut);
+            byteObjOut.writeObject(this);
+            byte[] bytes = byteOut.toByteArray();
+            out.close();
+            fileOut.close();
+            byteObjOut.close();
+            byteOut.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static SuffixArrayData readBinFileAndDeserialize(String filename) {
+        /* Read a serialized SuffixArrayData object from a file. */
+        SuffixArrayData saData = null;
+        try {
+            FileInputStream fileStream = new FileInputStream(filename);
+            ObjectInputStream objectStream = new ObjectInputStream(fileStream);
+            saData = (SuffixArrayData) objectStream.readObject();
+            objectStream.close();
+            fileStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return saData;
+    }
+}
 
 
 public class BuildSA {
     public static void main(String[] args) {
-        // Create a new instance of the SA class
-        BuildSA sa = new BuildSA();
-        String[] reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa", false);
-        int[] suffixArray = sa.buildSuffixArray(reference[0]);
-        //BuildSA.printSuffixArray(suffixArray, reference);
-        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference[0], suffixArray, 2);
-        System.out.println("Done.");
-        for (String key : prefixTable.keySet()) {
-            System.out.println(key + " " + Arrays.toString(prefixTable.get(key)));
+        /* PARSE ARGUMENTS */
+        int k = 0;
+        String referenceFile = "";
+        String outputFile = "";
+
+        if (args.length == 3) {
+            k = Integer.parseInt(args[0]);
+            referenceFile = args[1];
+            outputFile = args[2];
+        } else if (args.length == 2) {
+            referenceFile = args[0];
+            outputFile = args[1];
+        } else {
+            System.out.println("Usage: java BuildSA <k> <reference.fa> <output>");
+            System.exit(1);
         }
 
+        BuildSA sa = new BuildSA();
+        String[][] reference = sa.readFastaFile(referenceFile, false);
+        int[] suffixArray = sa.buildSuffixArray(reference[0][0]);
+        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference[0][0], suffixArray, k);
+
+        SuffixArrayData saData = new SuffixArrayData(suffixArray, prefixTable, k, reference[0][0]);
+        saData.serializeAndWriteToBinFile(outputFile);
     }
 
     public static void printSuffixArray(int[] suffixArray, String reference) {
@@ -47,9 +111,10 @@ public class BuildSA {
         return uniqueBases;
     }
 
-    public String[] readFastaFile(String filename, boolean appendSentinel) {
+    public static String[][] readFastaFile(String filename, boolean appendSentinel) {
         // There could be multiple sequences in the file (header + sequence)
-        String[] genomeSequences = null; 
+        String[] genomeSequences = null;
+        ArrayList<String> sequenceHeaders = new ArrayList<String>();
         BufferedReader fileReader = null;
         int seqNumber = 0; // counter for sequences
         StringBuilder sb = null;
@@ -60,6 +125,7 @@ public class BuildSA {
             // count the number of sequences
             while (line != null) {
                 if (line.charAt(0) == '>') {
+                    sequenceHeaders.add(line);
                     seqNumber++;
                 }
                 line = fileReader.readLine();
@@ -103,7 +169,7 @@ public class BuildSA {
             sb.append('$');
         }
         genomeSequences[seqNumber] = sb.toString();
-        return genomeSequences;
+        return new String[][]{genomeSequences, sequenceHeaders.toArray(new String[sequenceHeaders.size()])};
     }
     
     public int[] buildSuffixArray(String reference) {
@@ -121,6 +187,9 @@ public class BuildSA {
         corresponding to any prefix of length k.
          */
         Map<String, int[]> prefixTable = new HashMap<String, int[]>();
+        if (k == 0) {
+            return prefixTable;
+        }
         for (int i = 0; i < suffixArray.length; i++) {
             String suffix = reference.substring(suffixArray[i]);
             if (suffix.length() < k || (suffix.length() == k && suffix.charAt(suffix.length() - 1) == '$')) {
@@ -144,6 +213,9 @@ public class BuildSA {
         corresponding to any prefix of length k.
          */
         Map<String, int[]> prefixTable = new HashMap<String, int[]>();
+        if (k == 0) {
+            return prefixTable;
+        }
         int i = 0;
         while (i < suffixArray.length) {
             // String suffix = reference.substring(suffixArray[i]);

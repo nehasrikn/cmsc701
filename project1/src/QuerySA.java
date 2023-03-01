@@ -3,18 +3,20 @@ import java.util.Map;
 
 public class QuerySA {
     public static void main(String[] args) {
+        /* PARSE ARGUMENTS */
+        SuffixArrayData saData = SuffixArrayData.readBinFileAndDeserialize(args[0]);
 
-        BuildSA sa = new BuildSA();
         QuerySA qs = new QuerySA();
 
-        String reference = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli.fa", true)[0];
-        String[] queries = sa.readFastaFile(System.getProperty("user.dir") + "/data/ecoli_queries_strong.fa", false);
+        String reference = saData.reference;
+        int[] suffixArray = saData.suffixArray;
+        Map<String, int[]> prefixTable = saData.prefixTable;
+        int k = saData.k;
 
-        int[] suffixArray = sa.buildSuffixArray(reference);
-        int k = 15;
-        System.out.println("Built suffix array.");
-        Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference, suffixArray, k);
-        System.out.println("Built prefix table of k=" + k + ".");
+
+        String[][] queriesData = BuildSA.readFastaFile("data/ecoli_queries_strong.fa", false);
+        String[] queries = queriesData[0];
+        String[] queriesHeaders = queriesData[1];
 
         var tick = System.currentTimeMillis();
         for (int i = 0; i < queries.length; i++) {
