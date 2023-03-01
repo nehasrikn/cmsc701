@@ -1,10 +1,16 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 
 public class QuerySA {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /* PARSE ARGUMENTS */
         SuffixArrayData saData = SuffixArrayData.readBinFileAndDeserialize(args[0]);
+        String[][] queriesData = BuildSA.readFastaFile(args[1], false);
+        String queryMode = args[2];
+        String outFile = args[3];
+
 
         QuerySA qs = new QuerySA();
 
@@ -13,25 +19,51 @@ public class QuerySA {
         Map<String, int[]> prefixTable = saData.prefixTable;
         int k = saData.k;
 
-
-        String[][] queriesData = BuildSA.readFastaFile("data/ecoli_queries_strong.fa", false);
         String[] queries = queriesData[0];
         String[] queriesHeaders = queriesData[1];
+        int[] results;
+        FileWriter fw = new FileWriter(outFile);
+        String line;
 
-        var tick = System.currentTimeMillis();
-        for (int i = 0; i < queries.length; i++) {
-            qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
+        for(int i = 0; i < queries.length; i++) {
+            if (queryMode.equals("naive")) {
+                results = qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
+            } else if (queryMode.equals("simpaccel")) {
+                results = qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
+            } else {
+                results = null;
+                System.out.println("Invalid query mode.");
+            }
+            line = queriesHeaders[i] + "\t" + results.length + "\t" + arrayToTabSeparatedList(results);
+            System.out.println(line);
+            fw.write(line + "\n");
         }
-        var tock = System.currentTimeMillis();
-        System.out.println("Naive Query took " + (tock - tick) + " ms.");
+        fw.close();
 
-        tick = System.currentTimeMillis();
-        for (int i = 0; i < queries.length; i++) {
-            qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
-        }
-        tock = System.currentTimeMillis();
-        System.out.println("Simple Query took " + (tock - tick) + " ms.");
+
+//        var tick = System.currentTimeMillis();
+//        for (int i = 0; i < queries.length; i++) {
+//            qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
+//        }
+//        var tock = System.currentTimeMillis();
+//        System.out.println("Naive Query took " + (tock - tick) + " ms.");
+//
+//        tick = System.currentTimeMillis();
+//        for (int i = 0; i < queries.length; i++) {
+//            qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
+//        }
+//        tock = System.currentTimeMillis();
+//        System.out.println("Simple Query took " + (tock - tick) + " ms.");
     }
+
+    public static String arrayToTabSeparatedList(int[] array) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            sb.append(array[i]);
+        }
+        return sb.toString();
+    }
+
     public int getMismatchIndex(String reference, int index, String query, int offset) {
         /* Find the index of the first mismatch between query and reference, starting at index in reference. */
         int i = offset;

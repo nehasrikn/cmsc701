@@ -125,7 +125,7 @@ public class BuildSA {
             // count the number of sequences
             while (line != null) {
                 if (line.charAt(0) == '>') {
-                    sequenceHeaders.add(line);
+                    sequenceHeaders.add(line.substring(1));
                     seqNumber++;
                 }
                 line = fileReader.readLine();
