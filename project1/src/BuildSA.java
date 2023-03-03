@@ -29,15 +29,8 @@ class SuffixArrayData implements Serializable {
             FileOutputStream fileOut = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
-            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-            ObjectOutputStream byteObjOut = new ObjectOutputStream(fileOut);
-            byteObjOut.writeObject(this);
-            byte[] bytes = byteOut.toByteArray();
-            out.close();
             fileOut.close();
-            byteObjOut.close();
-            byteOut.close();
-
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,11 +75,22 @@ public class BuildSA {
 
         BuildSA sa = new BuildSA();
         String[][] reference = sa.readFastaFile(referenceFile, false);
+
+        long startTime = System.currentTimeMillis();
         int[] suffixArray = sa.buildSuffixArray(reference[0][0]);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Suffix array construction time: " + (endTime - startTime) + " ms");
+
+
+        startTime = System.currentTimeMillis();
         Map<String, int[]> prefixTable = sa.buildPrefixTableBinarySearch(reference[0][0], suffixArray, k);
+        endTime = System.currentTimeMillis();
+        System.out.println("k = " + k);
+        System.out.println("Prefix table construction time: " + (endTime - startTime) + " ms");
 
         SuffixArrayData saData = new SuffixArrayData(suffixArray, prefixTable, k, reference[0][0]);
         saData.serializeAndWriteToBinFile(outputFile);
+        System.out.println(reference[0][0].length());
     }
 
     public static void printSuffixArray(int[] suffixArray, String reference) {
@@ -125,7 +129,7 @@ public class BuildSA {
             // count the number of sequences
             while (line != null) {
                 if (line.charAt(0) == '>') {
-                    sequenceHeaders.add(line.substring(1));
+                    sequenceHeaders.add(line.substring(1).split("\\s")[0]);
                     seqNumber++;
                 }
                 line = fileReader.readLine();

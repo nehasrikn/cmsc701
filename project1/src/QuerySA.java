@@ -35,25 +35,24 @@ public class QuerySA {
                 System.out.println("Invalid query mode.");
             }
             line = queriesHeaders[i] + "\t" + results.length + "\t" + arrayToTabSeparatedList(results);
-            System.out.println(line);
             fw.write(line + "\n");
         }
         fw.close();
 
 
-//        var tick = System.currentTimeMillis();
-//        for (int i = 0; i < queries.length; i++) {
-//            qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
-//        }
-//        var tock = System.currentTimeMillis();
-//        System.out.println("Naive Query took " + (tock - tick) + " ms.");
-//
-//        tick = System.currentTimeMillis();
-//        for (int i = 0; i < queries.length; i++) {
-//            qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
-//        }
-//        tock = System.currentTimeMillis();
-//        System.out.println("Simple Query took " + (tock - tick) + " ms.");
+        var tick = System.currentTimeMillis();
+        for (int i = 0; i < queries.length; i++) {
+            qs.naiveQuery(queries[i], suffixArray, reference, k, prefixTable);
+        }
+        var tock = System.currentTimeMillis();
+        System.out.println("Naive Query took " + (tock - tick) + " ms.");
+
+        tick = System.currentTimeMillis();
+        for (int i = 0; i < queries.length; i++) {
+            qs.simpleAccelQuery(queries[i], suffixArray, reference, k, prefixTable);
+        }
+        tock = System.currentTimeMillis();
+        System.out.println("Simple Query took " + (tock - tick) + " ms.");
     }
 
     public static String arrayToTabSeparatedList(int[] array) {
