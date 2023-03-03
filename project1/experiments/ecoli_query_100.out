@@ -1,0 +1,16 @@
+K=0 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 5 ms.
+Simple Query took 10 ms.
+K=5 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 5 ms.
+Simple Query took 12 ms.
+K=10 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 6 ms.
+Simple Query took 11 ms.
+K=20 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 6 ms.
+Simple Query took 13 ms.

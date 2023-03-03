@@ -1,0 +1,256 @@
+K=0 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 3 ms.
+K=0 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=0 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=0 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=0 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=0 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=0 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 11 ms.
+K=0 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 8 ms.
+K=0 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 8 ms.
+K=0 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 8 ms.
+K=0 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 7 ms.
+Simple Query took 12 ms.
+K=0 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 8 ms.
+Simple Query took 12 ms.
+K=0 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 4 ms.
+Simple Query took 6 ms.
+K=0 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 6 ms.
+Simple Query took 7 ms.
+K=0 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 10 ms.
+Simple Query took 20 ms.
+K=0 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 12 ms.
+Simple Query took 18 ms.
+K=5 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=5 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=5 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=5 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 4 ms.
+Simple Query took 4 ms.
+K=5 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 3 ms.
+K=5 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=5 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 8 ms.
+K=5 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 8 ms.
+Simple Query took 7 ms.
+K=5 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 9 ms.
+K=5 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 7 ms.
+Simple Query took 7 ms.
+K=5 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 12 ms.
+K=5 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 8 ms.
+Simple Query took 11 ms.
+K=5 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 4 ms.
+Simple Query took 8 ms.
+K=5 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 5 ms.
+Simple Query took 6 ms.
+K=5 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 10 ms.
+Simple Query took 20 ms.
+K=5 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 11 ms.
+Simple Query took 18 ms.
+K=10 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=10 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=10 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 5 ms.
+K=10 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=10 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=10 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=10 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 4 ms.
+Simple Query took 9 ms.
+K=10 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 6 ms.
+K=10 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 8 ms.
+K=10 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 7 ms.
+K=10 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 12 ms.
+K=10 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 7 ms.
+Simple Query took 10 ms.
+K=10 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 3 ms.
+Simple Query took 7 ms.
+K=10 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 5 ms.
+Simple Query took 7 ms.
+K=10 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 10 ms.
+Simple Query took 20 ms.
+K=10 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 12 ms.
+Simple Query took 19 ms.
+K=20 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 4 ms.
+K=20 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 4 ms.
+K=20 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 5 ms.
+K=20 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=20 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 2 ms.
+Simple Query took 3 ms.
+K=20 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 3 ms.
+Simple Query took 3 ms.
+K=20 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 8 ms.
+K=20 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 6 ms.
+K=20 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 5 ms.
+Simple Query took 9 ms.
+K=20 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 7 ms.
+K=20 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 6 ms.
+Simple Query took 11 ms.
+K=20 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 8 ms.
+Simple Query took 10 ms.
+K=20 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 4 ms.
+Simple Query took 7 ms.
+K=20 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 5 ms.
+Simple Query took 7 ms.
+K=20 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 10 ms.
+Simple Query took 20 ms.
+K=20 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 11 ms.
+Simple Query took 18 ms.

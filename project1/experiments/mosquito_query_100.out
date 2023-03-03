@@ -1,0 +1,23 @@
+K=0 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 11 ms.
+Simple Query took 23 ms.
+K=5 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 12 ms.
+Simple Query took 25 ms.
+K=10 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 12 ms.
+Simple Query took 23 ms.
+K=20 QUERY_LENGTH=100 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)

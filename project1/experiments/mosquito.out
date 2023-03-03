@@ -1,0 +1,368 @@
+K=0 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 261 ms.
+Simple Query took 276 ms.
+K=0 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 258 ms.
+Simple Query took 273 ms.
+K=0 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 17 ms.
+Simple Query took 26 ms.
+K=0 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 18 ms.
+Simple Query took 20 ms.
+K=0 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 13 ms.
+Simple Query took 24 ms.
+K=0 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 13 ms.
+Simple Query took 18 ms.
+K=0 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 27 ms.
+Simple Query took 45 ms.
+K=0 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 25 ms.
+Simple Query took 33 ms.
+K=0 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 26 ms.
+Simple Query took 45 ms.
+K=0 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 27 ms.
+Simple Query took 36 ms.
+K=0 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 27 ms.
+Simple Query took 46 ms.
+K=0 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 29 ms.
+Simple Query took 43 ms.
+K=0 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 15 ms.
+Simple Query took 28 ms.
+K=0 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 16 ms.
+Simple Query took 21 ms.
+K=0 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 21 ms.
+Simple Query took 40 ms.
+K=0 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 22 ms.
+Simple Query took 33 ms.
+K=5 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 256 ms.
+Simple Query took 269 ms.
+K=5 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 255 ms.
+Simple Query took 256 ms.
+K=5 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 16 ms.
+Simple Query took 27 ms.
+K=5 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 17 ms.
+Simple Query took 26 ms.
+K=5 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 12 ms.
+Simple Query took 25 ms.
+K=5 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 14 ms.
+Simple Query took 17 ms.
+K=5 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 25 ms.
+Simple Query took 48 ms.
+K=5 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 25 ms.
+Simple Query took 33 ms.
+K=5 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 28 ms.
+Simple Query took 48 ms.
+K=5 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 28 ms.
+Simple Query took 37 ms.
+K=5 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 26 ms.
+Simple Query took 46 ms.
+K=5 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 28 ms.
+Simple Query took 42 ms.
+K=5 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 14 ms.
+Simple Query took 27 ms.
+K=5 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 16 ms.
+Simple Query took 22 ms.
+K=5 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 21 ms.
+Simple Query took 42 ms.
+K=5 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 23 ms.
+Simple Query took 35 ms.
+K=10 QUERY_LENGTH=10 METHOD=naive
+Number of sequences: 4545
+Naive Query took 253 ms.
+Simple Query took 264 ms.
+K=10 QUERY_LENGTH=10 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 256 ms.
+Simple Query took 259 ms.
+K=10 QUERY_LENGTH=50 METHOD=naive
+Number of sequences: 4545
+Naive Query took 17 ms.
+Simple Query took 30 ms.
+K=10 QUERY_LENGTH=50 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 15 ms.
+Simple Query took 27 ms.
+K=10 QUERY_LENGTH=100 METHOD=naive
+Number of sequences: 4545
+Naive Query took 13 ms.
+Simple Query took 22 ms.
+K=10 QUERY_LENGTH=100 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 13 ms.
+Simple Query took 17 ms.
+K=10 QUERY_LENGTH=200 METHOD=naive
+Number of sequences: 9090
+Naive Query took 27 ms.
+Simple Query took 46 ms.
+K=10 QUERY_LENGTH=200 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 25 ms.
+Simple Query took 50 ms.
+K=10 QUERY_LENGTH=500 METHOD=naive
+Number of sequences: 9090
+Naive Query took 26 ms.
+Simple Query took 44 ms.
+K=10 QUERY_LENGTH=500 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 29 ms.
+Simple Query took 42 ms.
+K=10 QUERY_LENGTH=1000 METHOD=naive
+Number of sequences: 9090
+Naive Query took 29 ms.
+Simple Query took 46 ms.
+K=10 QUERY_LENGTH=1000 METHOD=simpaccel
+Number of sequences: 9090
+Naive Query took 29 ms.
+Simple Query took 43 ms.
+K=10 QUERY_LENGTH=2000 METHOD=naive
+Number of sequences: 4550
+Naive Query took 13 ms.
+Simple Query took 26 ms.
+K=10 QUERY_LENGTH=2000 METHOD=simpaccel
+Number of sequences: 4550
+Naive Query took 15 ms.
+Simple Query took 21 ms.
+K=10 QUERY_LENGTH=10000 METHOD=naive
+Number of sequences: 4545
+Naive Query took 21 ms.
+Simple Query took 46 ms.
+K=10 QUERY_LENGTH=10000 METHOD=simpaccel
+Number of sequences: 4545
+Naive Query took 25 ms.
+Simple Query took 38 ms.
+K=20 QUERY_LENGTH=10 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=10 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=50 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=50 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=100 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=100 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=200 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=200 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=500 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=500 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=1000 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=1000 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 9090
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=2000 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4550
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=2000 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4550
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=10000 METHOD=naive
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
+K=20 QUERY_LENGTH=10000 METHOD=simpaccel
+java.io.FileNotFoundException: results/mosquito/mosquito_sa_preftab_20.bin (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at SuffixArrayData.readBinFileAndDeserialize(BuildSA.java:42)
+	at QuerySA.main(QuerySA.java:9)
+Number of sequences: 4545
+Exception in thread "main" java.lang.NullPointerException: Cannot read field "reference" because "<local1>" is null
+	at QuerySA.main(QuerySA.java:17)
