@@ -9,7 +9,7 @@ My code is written in Java.
 I used this [implementation](https://github.com/v-v/karkkainen-sanders/tree/master/code/java/Bioinformatika/src) of the suffix array in this assignment. In order to stay consistent with their API, my code that reads in FASTA files is similar to their implementation.
 
 
-In order to run the executables, you can execute them as bash scripts:
+In order to run the executables, you can execute them as bash scripts and pass the relevant arguments, i.e:
 ```
 bash querysa results/influenza/influenza_sa_preftab_5.bin data/influenza/influenzaA_queries.fa_500 naive results/influenza/naive_k_5_q_500.out
 ```
