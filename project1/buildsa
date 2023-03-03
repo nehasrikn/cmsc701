@@ -1,0 +1,2 @@
+javac -d out/production/project1 -cp lib/*.jar src/*.java
+java -cp out/production/project1 buildsa "$@"
