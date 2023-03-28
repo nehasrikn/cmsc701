@@ -58,31 +58,6 @@ public class JacobsonRank {
     int n;
 
     public static void main(String[] args) {
-       int[] x = {0,1,0,1,0,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,};
-       JacobsonRank j = new JacobsonRank();
-       j.constructRankData(x);
-       System.out.println(j.rank1(11));
-
-       /* Ground Truth */
-        int[] gt = new int[x.length];
-        int rank = 0;
-        for (int i = 0; i < x.length; i++) {
-            rank += x[i];
-            gt[i] = rank;
-        }
-        System.out.println(Arrays.toString(gt));
-
-       /* Test */
-        int[] test = new int[x.length];
-        for (int i = 0; i < x.length; i++) {
-            test[i] = j.rank1(i);
-        }
-        System.out.println(Arrays.toString(test));
-        System.out.println(Arrays.equals(gt, test));
-
-
-        System.out.println(j.select1(2));
-
 
     }
 
@@ -101,9 +76,8 @@ public class JacobsonRank {
         int log2n = (int) (Math.log(n) / Math.log(2));
 
         chunkSize = (int) Math.ceil(Math.pow(log2n, 2));
-        System.out.println("chunkSize: " + chunkSize);
+
         subChunkSize = (int) Math.ceil(0.5 * Math.log(n) / Math.log(2));
-        System.out.println("subChunkSize: " + subChunkSize);
 
         int numChunks = (int) Math.ceil((double) n / chunkSize);
 
@@ -122,6 +96,11 @@ public class JacobsonRank {
             cumulativeRank.add(i, rank);
             chunks[i] = chunk;
         }
+
+        System.out.println("chunkSize: " + chunkSize);
+        System.out.println("subChunkSize: " + subChunkSize);
+        System.out.println("numChunks: " + numChunks);
+
         printIntVector(cumulativeRank, numChunks);
     }
 
