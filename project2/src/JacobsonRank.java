@@ -10,8 +10,8 @@ class Chunk {
     public Chunk(int chunkStart, int chunkEnd, int[] bitVector, int subChunkSize) {
         int numSubChunks = (int) Math.ceil((double)(chunkEnd - chunkStart) / subChunkSize);
 
-        relativeRanks = new IntVector(numSubChunks, 64);
-        subChunkIndices = new IntVector(numSubChunks, 64);
+        relativeRanks = new IntVector(numSubChunks, chunkEnd - chunkStart);
+        subChunkIndices = new IntVector(numSubChunks, subChunkSize);
 
         int relativeRank = 0;
         for (int i = 0; i < numSubChunks; i++) { // enumerate subchunks in bit
@@ -81,7 +81,7 @@ public class JacobsonRank {
 
         int numChunks = (int) Math.ceil((double) n / chunkSize);
 
-        cumulativeRank = new IntVector(n, 64);
+        cumulativeRank = new IntVector(n, log2n);
         chunks = new Chunk[numChunks];
 
         int rank = 0;

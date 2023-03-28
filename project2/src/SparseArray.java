@@ -8,6 +8,9 @@ class SparseArrayQueryResult {
     public void setElem(String elem) {
         this.elem = elem;
     }
+    public String getElem() {
+        return elem;
+    }
 }
 
 public class SparseArray {
