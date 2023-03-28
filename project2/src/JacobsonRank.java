@@ -60,7 +60,7 @@ public class JacobsonRank {
        int[] x = {0,1,1,1,0, 1,0,1,1,1, 0,1};
        JacobsonRank j = new JacobsonRank();
        j.constructRankData(x);
-       // System.out.println(j.rank1(6));
+       System.out.println(j.rank1(12));
     }
 
     public static void printIntVector(IntVector v, int size) {
@@ -105,15 +105,21 @@ public class JacobsonRank {
     }
 
     public int rank1(int i) {
-        int rank = cumulativeRank.get((i / chunkSize) -1 );
-        Chunk chunk = chunks[i / chunkSize];
-        rank += chunk.relativeRanks.get(i % chunkSize - 1);
+        int chunkNum = i / chunkSize;
+        int rank = 0;
 
-        chunk.subChunkIndices.get(i % chunkSize );
+        if (chunkNum > 0) {
+            rank += cumulativeRank.get(Math.max(0, chunkNum - 1));
+        }
 
-        int subChunkIndex = i % chunkSize - 1;
+        Chunk chunk = chunks[chunkNum];
+        rank += chunk.relativeRanks.get((i % chunkSize / subChunkSize) - 1);
 
-        return 0;
+        int subChunk = chunk.subChunkIndices.get(i % chunkSize / subChunkSize);
+        int subChunkIndex = (i % chunkSize) % subChunkSize;
+        int withinSubChunkRank = ((1 << (subChunkIndex + 1)) - 1) & subChunk;
+        rank += Integer.bitCount(withinSubChunkRank);
+        return rank;
     }
 
 }
