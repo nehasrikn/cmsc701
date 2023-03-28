@@ -61,6 +61,25 @@ public class JacobsonRank {
        JacobsonRank j = new JacobsonRank();
        j.constructRankData(x);
        System.out.println(j.rank1(12));
+
+       /* Ground Truth */
+        int[] gt = new int[x.length];
+        int rank = 0;
+        for (int i = 0; i < x.length; i++) {
+            rank += x[i];
+            gt[i] = rank;
+        }
+        System.out.println(Arrays.toString(gt));
+
+       /* Test */
+        int[] test = new int[x.length];
+        for (int i = 0; i < x.length; i++) {
+            test[i] = j.rank1(i);
+        }
+        System.out.println(Arrays.toString(test));
+        System.out.println(Arrays.equals(gt, test));
+
+
     }
 
     public static void printIntVector(IntVector v, int size) {
@@ -69,6 +88,8 @@ public class JacobsonRank {
         }
         System.out.println();
     }
+
+
 
     public void constructRankData(int[] b) {
         int n = b.length;
@@ -85,7 +106,6 @@ public class JacobsonRank {
         cumulativeRank = new IntVector(n, 64);
         chunks = new Chunk[numChunks];
 
-
         int rank = 0;
         for (int i = 0; i < numChunks; i++) {
             Chunk chunk = new Chunk(
@@ -98,26 +118,23 @@ public class JacobsonRank {
             cumulativeRank.add(i, rank);
             chunks[i] = chunk;
         }
-
         printIntVector(cumulativeRank, numChunks);
-
-
     }
 
     public int rank1(int i) {
         int chunkNum = i / chunkSize;
         int rank = 0;
-
         if (chunkNum > 0) {
             rank += cumulativeRank.get(Math.max(0, chunkNum - 1));
         }
-
         Chunk chunk = chunks[chunkNum];
-        rank += chunk.relativeRanks.get((i % chunkSize / subChunkSize) - 1);
-
-        int subChunk = chunk.subChunkIndices.get(i % chunkSize / subChunkSize);
-        int subChunkIndex = (i % chunkSize) % subChunkSize;
-        int withinSubChunkRank = ((1 << (subChunkIndex + 1)) - 1) & subChunk;
+        int subChunkIndex = (i % chunkSize) / subChunkSize;
+        if (subChunkIndex > 0) {
+            rank += chunk.relativeRanks.get(subChunkIndex - 1);
+        }
+        int subChunk = chunk.subChunkIndices.get(subChunkIndex);
+        int subChunkOffset = (i % chunkSize) % subChunkSize;
+        int withinSubChunkRank = ((1 << (subChunkOffset + 1)) - 1) & subChunk;
         rank += Integer.bitCount(withinSubChunkRank);
         return rank;
     }
