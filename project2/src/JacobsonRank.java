@@ -55,12 +55,13 @@ public class JacobsonRank {
     Chunk[] chunks;
     int chunkSize;
     int subChunkSize;
+    int n;
 
     public static void main(String[] args) {
-       int[] x = {0,1,1,1,0, 1,0,1,1,1, 0,1};
+       int[] x = {0,1,0,1,0,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,};
        JacobsonRank j = new JacobsonRank();
        j.constructRankData(x);
-       System.out.println(j.rank1(12));
+       System.out.println(j.rank1(11));
 
        /* Ground Truth */
         int[] gt = new int[x.length];
@@ -80,6 +81,9 @@ public class JacobsonRank {
         System.out.println(Arrays.equals(gt, test));
 
 
+        System.out.println(j.select1(2));
+
+
     }
 
     public static void printIntVector(IntVector v, int size) {
@@ -92,7 +96,7 @@ public class JacobsonRank {
 
 
     public void constructRankData(int[] b) {
-        int n = b.length;
+        n = b.length;
 
         int log2n = (int) (Math.log(n) / Math.log(2));
 
@@ -122,6 +126,8 @@ public class JacobsonRank {
     }
 
     public int rank1(int i) {
+        /* Gets the rank of the ith bit in the bit vector */
+
         int chunkNum = i / chunkSize;
         int rank = 0;
         if (chunkNum > 0) {
@@ -137,6 +143,29 @@ public class JacobsonRank {
         int withinSubChunkRank = ((1 << (subChunkOffset + 1)) - 1) & subChunk;
         rank += Integer.bitCount(withinSubChunkRank);
         return rank;
+    }
+
+    public int select1(int rank) {
+        /* Gets the index of the rankth 1 in the bit vector */
+        int lo = 0;
+        int hi = n - 1;
+
+        if (rank1(hi) == rank) {
+            return hi;
+        } else if (rank1(hi) < rank) {
+            return -1;
+        }
+
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            int midRank = rank1(mid);
+            if (midRank > rank) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return lo - 1;
     }
 
 }
