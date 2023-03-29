@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -146,12 +147,30 @@ public class SparseArray {
         return elements.size();
     }
 
-    public void save() {
-
+    public void save(String fname) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fname);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            fileOut.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void load(String fname) {
-
+    public SparseArray load(String fname) {
+        try {
+            FileInputStream fileIn = new FileInputStream(fname);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            SparseArray sparseArray = (SparseArray) in.readObject();
+            fileIn.close();
+            in.close();
+            return sparseArray;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

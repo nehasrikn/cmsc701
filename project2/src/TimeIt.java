@@ -153,9 +153,9 @@ public class TimeIt {
         // timeIt.timeJacobsonRankSelect();
         // timeIt.timeSparseArray();
 
-        // timeIt.measureOverheadVsSparsity();
+        timeIt.measureOverheadVsSparsity();
 
-        timeIt.measureOverheadVsBitVectorSize();
+        // timeIt.measureOverheadVsBitVectorSize();
 
     }
 
