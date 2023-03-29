@@ -1,5 +1,6 @@
 import edu.berkeley.cs.succinct.util.vector.IntVector;
 
+import java.io.*;
 import java.util.Arrays;
 
 class Chunk {
@@ -49,7 +50,7 @@ class Chunk {
 }
 
 
-public class JacobsonRank {
+public class JacobsonRank  implements Serializable {
 
     IntVector cumulativeRank;
     Chunk[] chunks;
@@ -148,5 +149,33 @@ public class JacobsonRank {
             }
         }
         return lo - 1;
+    }
+
+    public void save(String fname) {
+        /* Saves the rank data structure for this bit vector to the file fname (your bit vector should also have a save() function). */
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fname);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            fileOut.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JacobsonRank load(String fname) {
+        /* Loads the rank data structure for this bit vector from the file fname (your bit vector should also have a load() function). */
+        try {
+            FileInputStream fileIn = new FileInputStream(fname);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            JacobsonRank rank = (JacobsonRank) in.readObject();
+            fileIn.close();
+            in.close();
+            return rank;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
