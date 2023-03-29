@@ -58,6 +58,25 @@ public class SparseArray {
         positions.add(pos);
     }
 
+    public int overhead() {
+       int jacobsonRankOverhead = jacobsonRank.overhead();
+       int positionsOverhead = positions.size() * Integer.SIZE;
+       int elementsOverhead = 0;
+       for (String element : elements) {
+           elementsOverhead += (element.length() + 1) * Character.SIZE;
+       }
+       return jacobsonRankOverhead + positionsOverhead + elementsOverhead;
+    }
+
+    public int overheadNoSparsity() {
+        int elementsOverhead = 0;
+        for (String element : elements) {
+            elementsOverhead += element.length() * Character.SIZE;
+        }
+        int emptyStringOverhead = (size() - num_elem()) * Character.SIZE;
+        return elementsOverhead + emptyStringOverhead;
+    }
+
     public void finalizeArray() {
         /* Finalizes the sparse array. This method should be called after all elements have been appended.
          * This method should create the underlying bitvector and store it in the bitVector field.

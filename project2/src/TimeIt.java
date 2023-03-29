@@ -83,8 +83,8 @@ public class TimeIt {
 
         long startTime = System.nanoTime();
         for (int i = 0; i < numOps; i++) {
-            sparseArray.num_elem_at(getRandomIndex(sparseArray.bitVectorSize));
-            //sparseArray.get_index_of(getRandomIndex(sparseArray.bitVectorSize));
+            //sparseArray.num_elem_at(getRandomIndex(sparseArray.bitVectorSize));
+            sparseArray.get_index_of(getRandomIndex(sparseArray.bitVectorSize));
         }
         long endTime = System.nanoTime();
 
@@ -94,8 +94,8 @@ public class TimeIt {
     }
 
     public void timeSparseArray() {
-        double[] sparsities = {0.1}; //{0.01, 0.05, 0.1};
-        int[] bitVectorSizes = {100, 1000, 10000, 100000, 1000000}; //{10000};
+        double[] sparsities = {0.01, 0.05, 0.1, 0.5};
+        int[] bitVectorSizes = {10000}; // {100, 1000, 10000, 100000, 1000000}; //{10000};
         int numOps = 100000;
         for (double sparsity: sparsities) {
             // System.out.println("Sparsity: " + sparsity);
@@ -106,27 +106,57 @@ public class TimeIt {
             }
             System.out.println();
         }
+    }
 
+    public void timeJacobsonRankSelect() {
+        int[] bitVectorSizes = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
+        int numRankOps = 100000;
+        for (int bitVectorSize : bitVectorSizes) {
+            int[] bitVector = generateRandomBitVector(bitVectorSize, 0.5);
+            System.out.println("Number of bits: " + bitVector.length);
+            // System.out.println("Overhead: " + timeIt.calculateOverhead(bitVector) + " bits");
+            // timeIt.timeRank(bitVector, numRankOps);
+            // timeSelect(bitVector, numRankOps);
+            System.out.println();
 
+        }
+    }
+
+    public void measureOverheadVsSparsity() {
+
+        double[] sparsities = {0.01, 0.05, 0.1, 0.5};
+        for (double sparsity: sparsities) {
+            System.out.println("Sparsity: " + sparsity);
+            SparseArray sparseArray = generateRandomSparseArray(10000, sparsity);
+            System.out.println("Overhead: " + sparseArray.overhead() + " bits");
+            System.out.println("Naive Overhead: " + sparseArray.overheadNoSparsity() + " bits");
+            System.out.println();
+        }
+    }
+
+    public void measureOverheadVsBitVectorSize() {
+        int[] bitVectorSizes = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
+
+        for (int bitVectorSize : bitVectorSizes) {
+            System.out.println("Bit Vector Size: " + bitVectorSize);
+            SparseArray sparseArray = generateRandomSparseArray(bitVectorSize, 0.1);
+            System.out.println("Overhead: " + sparseArray.overhead() + " bits");
+            System.out.println("Naive Overhead: " + sparseArray.overheadNoSparsity() + " bits");
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
 
-        int[] bitVectorSizes = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
-        int numRankOps = 100000;
         TimeIt timeIt = new TimeIt();
 
-        timeIt.timeSparseArray();
+        // timeIt.timeJacobsonRankSelect();
+        // timeIt.timeSparseArray();
 
-//        for (int bitVectorSize : bitVectorSizes) {
-//            int[] bitVector = timeIt.generateRandomBitVector(bitVectorSize, 0.5);
-//            System.out.println("Number of bits: " + bitVector.length);
-//            // System.out.println("Overhead: " + timeIt.calculateOverhead(bitVector) + " bits");
-//            // timeIt.timeRank(bitVector, numRankOps);
-//            timeIt.timeSelect(bitVector, numRankOps);
-//            System.out.println();
-//
-//        }
+        // timeIt.measureOverheadVsSparsity();
+
+        timeIt.measureOverheadVsBitVectorSize();
+
     }
 
 
