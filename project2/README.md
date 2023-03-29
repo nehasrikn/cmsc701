@@ -1,4 +1,4 @@
-### CMSC 701 Project 2: Implementing bitvector rank and select, and applying them to a sparse array
+# CMSC 701 Project 2: Implementing bitvector rank and select, and applying them to a sparse array
 
 > What language have you written your solution in? <br>
 
@@ -44,3 +44,6 @@ sparseArray.get_index_of(getRandomIndex(sparseArray.bitVectorSize));
 sparseArray.num_elem_at(getRandomIndex(sparseArray.bitVectorSize));
 
 ```
+
+### TimeIt
+For all the plot values (i.e times and overheads), my testing code is located in the `TimeIt.java` class.
