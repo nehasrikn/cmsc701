@@ -30,15 +30,15 @@ public class TimeIt {
             int rank = jacobsonRank.rank1(getRandomIndex(bitVector.length));
         }
         long endTime = System.currentTimeMillis();
-        System.out.print("Bit vector size: " + bitVector.length + " Num rank ops: " + numRankOps + " ");
+        System.out.print("Bit vector size: " + bitVector.length + " | Num rank ops: " + numRankOps + " | ");
         System.out.println("Time taken: " + (endTime - startTime));
         return endTime - startTime;
     }
 
     public static void main(String[] args) {
         TimeIt timeIt = new TimeIt();
-        int[] bitVector = timeIt.generateRandomBitVector(100000, 0.5);
-        timeIt.timeRank(bitVector, 10000);
+        int[] bitVector = timeIt.generateRandomBitVector(1000000, 0.5);
+        timeIt.timeRank(bitVector, 100000);
     }
 
 

@@ -8,9 +8,9 @@ class Chunk {
     int maxRelativeRank;
 
     public Chunk(int chunkStart, int chunkEnd, int[] bitVector, int subChunkSize) {
-        int numSubChunks = (int) Math.ceil((double)(chunkEnd - chunkStart) / subChunkSize);
+        int numSubChunks = (int) Math.ceil((double) (chunkEnd - chunkStart) / subChunkSize);
 
-        relativeRanks = new IntVector(numSubChunks, chunkEnd - chunkStart);
+        relativeRanks = new IntVector(numSubChunks, (int) Math.ceil(Math.log(chunkEnd-chunkStart+1) / Math.log(2)));
         subChunkIndices = new IntVector(numSubChunks, subChunkSize);
 
         int relativeRank = 0;
@@ -38,6 +38,7 @@ class Chunk {
         return result;
 
     }
+
     public static int subChunkRank(int subChunkStart, int subChunkEnd, int[] bitVector) {
         int rank = 0;
         for (int i = subChunkStart; i < subChunkEnd; i++) {
@@ -45,7 +46,6 @@ class Chunk {
         }
         return rank;
     }
-
 }
 
 
@@ -68,6 +68,18 @@ public class JacobsonRank {
         System.out.println();
     }
 
+
+    public int overhead() {
+        int integers = 3 * Integer.SIZE;
+        int cumulativeRankSize = cumulativeRank.serializedSize() * 8;
+        int chunksSize = 0;
+        for (Chunk chunk : chunks) {
+            chunksSize += chunk.relativeRanks.serializedSize() * 8;
+            chunksSize += chunk.subChunkIndices.serializedSize() * 8;
+            chunksSize += Integer.SIZE;
+        }
+        return integers + cumulativeRankSize + chunksSize;
+    }
 
 
     public void constructRankData(int[] b) {
@@ -146,5 +158,6 @@ public class JacobsonRank {
         }
         return lo - 1;
     }
+
 
 }
