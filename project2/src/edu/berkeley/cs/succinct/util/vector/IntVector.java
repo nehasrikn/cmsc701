@@ -152,6 +152,10 @@ public class IntVector extends BitVector {
         return 4 + super.serializedSize();
     }
 
+    public int overhead() {
+        return Integer.SIZE + super.numBlocks() * 8;
+    }
+
     /**
      * Serialize the IntVector to a ByteBuffer.
      *
