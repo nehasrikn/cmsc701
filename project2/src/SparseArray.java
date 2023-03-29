@@ -66,7 +66,7 @@ public class SparseArray {
         for (int pos : positions) {
             bitVector[pos] = 1;
         }
-        System.out.println("SparseArray BitVector: " + Arrays.toString(bitVector));
+        // System.out.println("SparseArray BitVector: " + Arrays.toString(bitVector));
         jacobsonRank = new JacobsonRank();
         jacobsonRank.constructRankData(bitVector);
     }
@@ -128,6 +128,7 @@ public class SparseArray {
     }
 
     public void save() {
+
     }
 
     public void load(String fname) {
