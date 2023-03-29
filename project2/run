@@ -1,0 +1,2 @@
+javac -d out/production/project2 src/*.java
+java -cp out/production/project2 TimeIt
