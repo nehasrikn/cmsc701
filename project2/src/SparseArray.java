@@ -120,7 +120,7 @@ public class SparseArray {
         /* This function takes as its argument a rank r and returns the index in the sparse array where the
         r-th present element appears.
          */
-        if (r < 0) {
+        if (r <= 0) {
             throw new IllegalArgumentException("rank must be greater than 0");
         } else if (r > elements.size()) {
             return -1;
