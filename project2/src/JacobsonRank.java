@@ -57,10 +57,6 @@ public class JacobsonRank {
     int subChunkSize;
     int n;
 
-    public static void main(String[] args) {
-
-    }
-
     public static void printIntVector(IntVector v, int size) {
         for (int i = 0; i < size; i++) {
             System.out.print(v.get(i) + " ");
@@ -68,32 +64,29 @@ public class JacobsonRank {
         System.out.println();
     }
 
-
     public int overhead() {
         int integers = 3 * Integer.SIZE;
-        int cumulativeRankSize = cumulativeRank.serializedSize() * 8;
+        int cumulativeRankSize = cumulativeRank.overhead();
         int chunksSize = 0;
         for (Chunk chunk : chunks) {
-            chunksSize += chunk.relativeRanks.serializedSize() * 8;
-            chunksSize += chunk.subChunkIndices.serializedSize() * 8;
+            chunksSize += chunk.relativeRanks.overhead();
+            chunksSize += chunk.subChunkIndices.overhead();
             chunksSize += Integer.SIZE;
         }
         return integers + cumulativeRankSize + chunksSize;
     }
 
-
     public void constructRankData(int[] b) {
         n = b.length;
 
-        int log2n = (int) (Math.log(n) / Math.log(2));
+        double log2n = Math.log(n) / Math.log(2);
 
         chunkSize = (int) Math.ceil(Math.pow(log2n, 2));
-
-        subChunkSize = (int) Math.ceil(0.5 * Math.log(n) / Math.log(2));
+        subChunkSize = (int) Math.ceil(0.5 * log2n);
 
         int numChunks = (int) Math.ceil((double) n / chunkSize);
 
-        cumulativeRank = new IntVector(n, log2n);
+        cumulativeRank = new IntVector(n, (int) log2n);
         chunks = new Chunk[numChunks];
 
         int rank = 0;
@@ -109,11 +102,9 @@ public class JacobsonRank {
             chunks[i] = chunk;
         }
 
-        System.out.println("chunkSize: " + chunkSize);
-        System.out.println("subChunkSize: " + subChunkSize);
-        System.out.println("numChunks: " + numChunks);
-
-        printIntVector(cumulativeRank, numChunks);
+         // System.out.println("chunkSize: " + chunkSize);
+         // System.out.println("subChunkSize: " + subChunkSize);
+         // System.out.println("numChunks: " + numChunks);
     }
 
     public int rank1(int i) {
@@ -158,6 +149,4 @@ public class JacobsonRank {
         }
         return lo - 1;
     }
-
-
 }

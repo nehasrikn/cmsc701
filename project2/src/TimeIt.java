@@ -27,7 +27,7 @@ public class TimeIt {
 
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < numRankOps; i++) {
-            int rank = jacobsonRank.rank1(getRandomIndex(bitVector.length));
+            jacobsonRank.rank1(getRandomIndex(bitVector.length));
         }
         long endTime = System.currentTimeMillis();
         System.out.print("Bit vector size: " + bitVector.length + " | Num rank ops: " + numRankOps + " | ");
@@ -35,10 +35,51 @@ public class TimeIt {
         return endTime - startTime;
     }
 
+    public static int sumArray(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+
+    public long timeSelect(int[] bitVector, int numSelectOps) {
+        JacobsonRank jacobsonRank = new JacobsonRank();
+        jacobsonRank.constructRankData(bitVector);
+
+        int maxRank = sumArray(bitVector);
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < numSelectOps; i++) {
+            jacobsonRank.select1(getRandomIndex(maxRank));
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.print("Bit vector size: " + bitVector.length + " | Num select ops: " + numSelectOps + " | ");
+        System.out.println("Time taken: " + (endTime - startTime));
+        return endTime - startTime;
+    }
+
+    public int calculateOverhead(int[] bitVector) {
+        JacobsonRank jacobsonRank = new JacobsonRank();
+        jacobsonRank.constructRankData(bitVector);
+        return jacobsonRank.overhead();
+    }
+
     public static void main(String[] args) {
+
+        int[] bitVectorSizes = {10, 100, 1000, 10000, 100000, 1000000, 10000000};
+        int numRankOps = 100000;
         TimeIt timeIt = new TimeIt();
-        int[] bitVector = timeIt.generateRandomBitVector(1000000, 0.5);
-        timeIt.timeRank(bitVector, 100000);
+
+        for (int bitVectorSize : bitVectorSizes) {
+            int[] bitVector = timeIt.generateRandomBitVector(bitVectorSize, 0.5);
+            System.out.println("Number of bits: " + bitVector.length);
+            // System.out.println("Overhead: " + timeIt.calculateOverhead(bitVector) + " bits");
+            // timeIt.timeRank(bitVector, numRankOps);
+            timeIt.timeSelect(bitVector, numRankOps);
+            System.out.println();
+
+        }
     }
 
 
