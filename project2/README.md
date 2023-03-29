@@ -9,6 +9,38 @@ My code is written in Java.
 I used this [implementation](https://github.com/amplab/succinct/blob/master/core/src/main/java/edu/berkeley/cs/succinct/util/vector/IntVector.java) of an underlying BitVector in this assignment.
 
 
-In order to run the executables, you can execute them as bash scripts and pass the relevant arguments, i.e:
+### Rank + Select
+You can utilize rank and select functionality by using the `JacobsonRank` class located in the file `JacobsonRank.java`.
 ```
+int[] bitVector = {0,1,0,0,0,1}
+
+JacobsonRank jacobsonRank = new JacobsonRank();
+jacobsonRank.constructRankData(bitVector);
+
+/* RANK */
+jacobsonRank.rank1(getRandomIndex(bitVector.length));
+
+/* SELECT */
+jacobsonRank.select1(getRandomIndex(maxRank));
+```
+
+### SparseArray
+The code for the SparseArray is located in `SparseArray.java`, along with the wrapper class that returns the elements (`SparseArrayQueryResult`). To build the SparseArray class: 
+
+```
+int[] randomBitVector = generateRandomBitVector(n, p);
+
+SparseArray sparseArray = new SparseArray();
+sparseArray.create(n);
+
+for (int i = 0; i < n; i++) {
+    if (randomBitVector[i] == 1) {
+        sparseArray.append("hkjhkji", i);
+    }
+}
+sparseArray.finalizeArray();
+
+sparseArray.get_index_of(getRandomIndex(sparseArray.bitVectorSize));
+sparseArray.num_elem_at(getRandomIndex(sparseArray.bitVectorSize));
+
 ```
