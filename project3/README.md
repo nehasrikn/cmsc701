@@ -10,3 +10,7 @@ I used this [Bloom filter implementation](https://github.com/KenanHanke/rbloom) 
 
 
 All the code to experiment and to run the files is in the main functions of all the Python files. You'll need Python 3.9.
+
+For example, the bloom_eval code can be run from the top level directory as so:
+
+`python -m bloom_eval`.
